@@ -37,6 +37,7 @@ def SRT(arrival_time_o, burst_time_1, io_time, burst_time_2):
             srtf, is_done = reduce_bt(index, srtf)
             if is_done:
                 data[index]['ct'] = CPU_time
+                complete_time = CPU_time
         return data
 
     # find turn around time and waiting time with 'calculate_tat_wt' function
