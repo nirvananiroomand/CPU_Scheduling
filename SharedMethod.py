@@ -45,7 +45,7 @@ def print_output(arrival_time, complete_time, turn_around_time, waiting_time, re
     print("\tresponse time\t\tturnaround time\t\twaiting time\t\tstart - end")
   
     for i in range(lentgh):
-        print(f"P{i}\t\t{response_time[i]}\t\t\t{turn_around_time[i]}\t\t\t{waiting_time[i]}\t\t{arrival_time[i]}\t{complete_time[i]}\t")
+        print(f"P{i}\t\t{response_time[i]}\t\t\t{turn_around_time[i]}\t\t\t{waiting_time[i]}\t\t{arrival_time[i]}  -  {complete_time[i]}")
             
         total_response += response_time[i]
         total_turnaround += turn_around_time[i]
@@ -61,4 +61,4 @@ def print_output(arrival_time, complete_time, turn_around_time, waiting_time, re
     print(f"\t\tBurst Time = {total_burst_time}")
     print(f"\t\tUtilization = %{(total_burst_time / total_time) * 100}")
     print(f"\t\tThroughput = {(lentgh * 1000) / total_time}")
-    print("______________________________________________________________________________________________________________________")
+   
