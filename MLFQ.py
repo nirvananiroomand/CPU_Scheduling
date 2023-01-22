@@ -26,7 +26,7 @@ def MLFQ(arrival_time_o, burst_time_1_o, io_time, burst_time_2_o):
 
     while not is_done(status):
         if len(process_list_level_1) > 0:  # if there is a process in level 1 this block execute
-            # block 1 in this multi level feedback queue is Rand Robin with time quantum 8
+            # block 1 in this multi level feedback queue is Rand Robin with time quantum 4
             process_turn_o = find_next_process(arrival_time, io_finished_at)
             flag_1 = False
             if process_turn_o == process_turn:
@@ -41,7 +41,7 @@ def MLFQ(arrival_time_o, burst_time_1_o, io_time, burst_time_2_o):
             # this condition is true when process want to execute 'cpu time 1'
             if status[process_turn] == 'CP' and arrival_time[process_turn] <= cpu_time and arrival_time[
                 process_turn] != -1:
-                if burst_time_1[process_turn] <= 8:  # when burst time is lower than time quantum
+                if burst_time_1[process_turn] <= 4:  # when burst time is lower than time quantum
                     temp = cpu_time - arrival_time[process_turn]
                     response_time[process_turn] = temp
                     cpu_time += burst_time_1[process_turn]
@@ -52,8 +52,8 @@ def MLFQ(arrival_time_o, burst_time_1_o, io_time, burst_time_2_o):
                 else:  # when burst time is greater than time quantum
                     temp = cpu_time - arrival_time[process_turn]
                     response_time.append(temp)
-                    cpu_time += 8
-                    burst_time_1[process_turn] -= 8
+                    cpu_time += 4
+                    burst_time_1[process_turn] -= 4
                     if not flag_1:
                         a = process_list_level_1.pop(0)
                     else:
@@ -64,7 +64,7 @@ def MLFQ(arrival_time_o, burst_time_1_o, io_time, burst_time_2_o):
             elif (status[process_turn] == 'IO' or status[process_turn] == 'CP2') and io_finished_at[
                 process_turn] <= cpu_time and io_finished_at[
                 process_turn] != -1:
-                if burst_time_2[process_turn] <= 8:  # when burst time is lower than time quantum
+                if burst_time_2[process_turn] <= 4:  # when burst time is lower than time quantum
                     cpu_time += burst_time_2[process_turn]
                     burst_time_2[process_turn] = 0
                     status[process_turn] = 'Done'  # change status to 'Done'
@@ -72,8 +72,8 @@ def MLFQ(arrival_time_o, burst_time_1_o, io_time, burst_time_2_o):
                     process_list_level_1.pop(-1)
                     complete_time[process_turn] = cpu_time
                 else:  # when burst time is greater than time quantum
-                    cpu_time += 8
-                    burst_time_2[process_turn] -= 8
+                    cpu_time += 4
+                    burst_time_2[process_turn] -= 4
                     status[process_turn] = 'CP2'  # change status to 'CP2' to execute remaining burst time
                     if not flag_1:
                         a = process_list_level_1.pop(0)
