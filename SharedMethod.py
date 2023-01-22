@@ -39,22 +39,26 @@ def print_output(arrival_time, complete_time, turn_around_time, waiting_time, re
     total_burst_time = 0
     print()
     print()
-    print("======================================================================================================")
-    print(f"\t\t\t\t\t\t\t\t\t\t\t{print_for}")
-    print("======================================================================================================")
-    print("\tresponse time\t\tturnaround time\t\twaiting time\t\tarrival time\t\tcomplete time")
+    print("======================================================================================================================")
+    print(f"\t\t\t\t\t\t\t{print_for}")
+    print("======================================================================================================================")
+    print("\tresponse time\t\tturnaround time\t\twaiting time\t\tstart - end")
+  
     for i in range(lentgh):
-        print(
-            f"P{i}\t\t{response_time[i]}\t\t\t\t\t{turn_around_time[i]}\t\t\t\t\t{waiting_time[i]}\t\t\t\t\t{arrival_time[i]}\t\t\t\t\t{complete_time[i]}")
+        print(f"P{i}\t\t{response_time[i]}\t\t\t{turn_around_time[i]}\t\t\t{waiting_time[i]}\t\t{arrival_time[i]}\t{complete_time[i]}\t")
+            
         total_response += response_time[i]
         total_turnaround += turn_around_time[i]
         total_waiting += waiting_time[i]
         total_burst_time += burst_time_1[i] + burst_time_2[i]
-    print("_______________________________________________________________________________________________________")
-    print(f"AVG\t\t{total_response / lentgh}\t\t\t\t\t{total_turnaround / lentgh}\t\t\t\t{total_waiting / lentgh}")
+    print("______________________________________________________________________________________________________________________")
+    print(f"AVG\t\t{total_response / lentgh}\t\t\t{total_turnaround / lentgh}\t\t\t{total_waiting / lentgh}")
     print()
+
+    
     print(f"\t\tTotal Time = {total_time}")
     print(f"\t\tIdle Time = {total_time - total_burst_time}")
     print(f"\t\tBurst Time = {total_burst_time}")
     print(f"\t\tUtilization = %{(total_burst_time / total_time) * 100}")
     print(f"\t\tThroughput = {(lentgh * 1000) / total_time}")
+    print("______________________________________________________________________________________________________________________")

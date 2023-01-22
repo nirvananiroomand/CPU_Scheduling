@@ -84,7 +84,7 @@ def SJF(arrival_time_o, burst_time_1, io_time, burst_time_2):
             status[process_turn] = 'Done'
             io_finished_at[process_turn] = -1
             complete_time[process_turn] = cpu_time
-        else:
+        else: #when we don't have any process in queue
             cpu_time += 1
 
     # find turn around time and waiting time with 'calculate_tat_wt' function
